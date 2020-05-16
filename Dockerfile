@@ -15,6 +15,10 @@ RUN		dpkg --add-architecture i386 \
 		&& chmod 644 /usr/lib/libcxa.so.1 \
 		&& cp libcxa.so.1 /lib/libcxa.so.1 \
 		&& chmod 644 /lib/libcxa.so.1 \
+		&& curl https://files.houseofpainserver.com/games/sof2/dependencies/fc4libs/ld-2.3.6.so --output ld-2.3.6.so \
+		&& mv ld-2.3.6.so /opt/ld-2.3.6.so \
+		&& curl https://files.houseofpainserver.com/games/sof2/dependencies/fc4libs/ld-linux.so.2 --output ld-linux.so.2 \
+		&& mv ld-linux.so.2 /opt/ld-linux.so.2 \
 		&& useradd -m -d /home/container container
 
 USER		container
