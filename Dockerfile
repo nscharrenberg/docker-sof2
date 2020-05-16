@@ -12,6 +12,8 @@ RUN		dpkg --add-architecture i386 \
 		&& apt-get install -y tar curl \
 		&& curl https://files.houseofpainserver.com/games/sof2/dependencies/libcxa.so.1 --output libcxa.so.1 \
 		&& mv libcxa.so.1 /lib/libcxa.so.1 \
+		&& chmod 744 /lib/libcxa.so.1 \
+		&& chmod +x /lib/libcxa.so.1 \
 		&& useradd -m -d /home/container container
 
 USER		container
