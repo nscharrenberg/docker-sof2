@@ -19,7 +19,7 @@ RUN		dpkg --add-architecture i386 \
 		&& mv ld-2.3.6.so /opt/ld-2.3.6.so \
 		&& curl https://files.houseofpainserver.com/games/sof2/dependencies/fc4libs/ld-linux.so.2 --output ld-linux.so.2 \
 		&& mv ld-linux.so.2 /opt/ld-linux.so.2 \
-		&& useradd -m -d /home/container container \
+		&& useradd -m -d /home/container container
 
 USER		container
 ENV		HOME /home/container
