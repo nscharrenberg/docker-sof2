@@ -23,11 +23,13 @@ RUN		echo "# INSTALL DEPENDENCIES ##########################################" \
 		&& echo "# CREATE USER ################################################" \
 		&& useradd -m -d /home/container container \
 		&& echo "# INSTALL GAME ###############################################" \
-		&& curl https://files.houseofpainserver.com/games/sof2/linux/gold.zip --output gold.zip \
-		&& unzip gold.zip -d /home/container/ \
+		&& mkdir /tmp/build \
+		&& cd /tmp/build \
+		&& curl https://files.houseofpainserver.com/games/sof2/linux/gold.zip --output /tmp/build/gold.zip \
+		&& unzip /tmp/build/gold.zip -d /home/container/ \
 		&& chmod 755 /home/container/sof2ded \
 		&& chmod 755 /home/container/1fx \
-		&& rm -rf gold.zip
+		&& rm -rf /home/container/gold.zip
 
 USER		container
 ENV		HOME /home/container
