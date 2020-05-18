@@ -7,7 +7,7 @@ FROM		debian:10.4
 LABEL		author="Noah Scharrenberg" maintainer="nscharrenberg@hotmail.com"
 
 ENV		DEBIAN_FRONTEND noninteractive
-RUN		echo "# INSTALL DEPENDENCIES ##########################################" && \
+RUN		echo "# INSTALL DEPENDENCIES ##########################################" \
 		&& dpkg --add-architecture i386 \ 
 		&& apt-get update \
 		&& apt-get install -y unzip curl \
@@ -20,13 +20,14 @@ RUN		echo "# INSTALL DEPENDENCIES ##########################################" &&
 		&& mv ld-2.3.6.so /lib/ld-2.3.6.so \
 		&& curl https://files.houseofpainserver.com/games/sof2/dependencies/fc4libs/ld-linux.so.2 --output ld-linux.so.2 \
 		&& mv ld-linux.so.2 /lib/ld-linux.so.2 \
-		&& echo "# CREATE USER ################################################" && \
+		&& echo "# CREATE USER ################################################" \
 		&& useradd -m -d /home/container container \
-		&& echo "# INSTALL GAME ###############################################" && \
+		&& echo "# INSTALL GAME ###############################################" \
 		&& curl https://files.houseofpainserver.com/games/sof2/linux/gold.zip --output gold.zip \
 		&& unzip gold.zip -d /home/container/ \
 		&& chmod 755 /home/container/sof2ded \
-		&& chmod 755 /home/container/1fx
+		&& chmod 755 /home/container/1fx \
+		&& rm -rf gold.zip
 
 USER		container
 ENV		HOME /home/container
