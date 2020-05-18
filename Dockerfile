@@ -7,9 +7,10 @@ FROM		debian:10.4
 LABEL		author="Noah Scharrenberg" maintainer="nscharrenberg@hotmail.com"
 
 ENV		DEBIAN_FRONTEND noninteractive
-RUN		dpkg --add-architecture i386 \ 
+RUN		echo "# INSTALL DEPENDENCIES ##########################################" && \
+		&& dpkg --add-architecture i386 \ 
 		&& apt-get update \
-		&& apt-get install -y tar curl \
+		&& apt-get install -y unzip curl \
 		&& curl https://files.houseofpainserver.com/games/sof2/dependencies/libcxa.so.1 --output libcxa.so.1 \
 		&& cp libcxa.so.1 /usr/lib/libcxa.so.1 \
 		&& chmod 644 /usr/lib/libcxa.so.1 \
@@ -19,7 +20,13 @@ RUN		dpkg --add-architecture i386 \
 		&& mv ld-2.3.6.so /lib/ld-2.3.6.so \
 		&& curl https://files.houseofpainserver.com/games/sof2/dependencies/fc4libs/ld-linux.so.2 --output ld-linux.so.2 \
 		&& mv ld-linux.so.2 /lib/ld-linux.so.2 \
-		&& useradd -m -d /home/container container
+		&& echo "# CREATE USER ################################################" && \
+		&& useradd -m -d /home/container container \
+		&& echo "# INSTALL GAME ###############################################" && \
+		&& curl https://files.houseofpainserver.com/games/sof2/linux/gold.zip --output gold.zip \
+		&& unzip gold.zip -d /home/container/ \
+		&& chmod 755 /home/container/sof2ded \
+		&& chmod 755 /home/container/1fx
 
 USER		container
 ENV		HOME /home/container
