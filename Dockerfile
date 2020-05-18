@@ -25,11 +25,11 @@ RUN		echo "# INSTALL DEPENDENCIES ##########################################" \
 		&& echo "# INSTALL GAME ###############################################" \
 		&& mkdir /tmp/build \
 		&& cd /tmp/build \
-		&& curl https://files.houseofpainserver.com/games/sof2/linux/gold.tar.gz --output /tmp/build/gold.zip \
-		&& tar -xvzf /tmp/build/gold.zip -d /home/container/ \
+		&& curl https://files.houseofpainserver.com/games/sof2/linux/gold.tar.gz --output /tmp/build/gold.tar.gz \
+		&& tar -xvzf /tmp/build/gold.tar.gz /home/container/ \
 		&& chmod 755 /home/container/sof2ded \
 		&& chmod 755 /home/container/1fx \
-		&& rm -rf /home/container/gold.zip
+		&& rm -rf /home/container/gold.tar.gz
 
 USER		container
 ENV		HOME /home/container
