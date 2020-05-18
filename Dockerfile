@@ -10,7 +10,7 @@ ENV		DEBIAN_FRONTEND noninteractive
 RUN		echo "# INSTALL DEPENDENCIES ##########################################" \
 		&& dpkg --add-architecture i386 \ 
 		&& apt-get update \
-		&& apt-get install -y unzip curl \
+		&& apt-get install -y tar curl \
 		&& curl https://files.houseofpainserver.com/games/sof2/dependencies/libcxa.so.1 --output libcxa.so.1 \
 		&& cp libcxa.so.1 /usr/lib/libcxa.so.1 \
 		&& chmod 644 /usr/lib/libcxa.so.1 \
@@ -25,7 +25,7 @@ RUN		echo "# INSTALL DEPENDENCIES ##########################################" \
 		&& echo "# INSTALL GAME ###############################################" \
 		&& mkdir /tmp/build \
 		&& cd /tmp/build \
-		&& curl https://files.houseofpainserver.com/games/sof2/linux/gold.zip --output /tmp/build/gold.zip \
+		&& curl https://files.houseofpainserver.com/games/sof2/linux/gold.tar.gz --output /tmp/build/gold.zip \
 		&& unzip /tmp/build/gold.zip -d /home/container/ \
 		&& chmod 755 /home/container/sof2ded \
 		&& chmod 755 /home/container/1fx \
