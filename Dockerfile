@@ -10,7 +10,8 @@ ENV		DEBIAN_FRONTEND noninteractive
 RUN		echo "# INSTALL DEPENDENCIES ##########################################" \
 		&& dpkg --add-architecture i386 \ 
 		&& apt-get update \
-		&& apt-get install -y tar curl \
+		&& apt-get upgrade -y \
+		&& apt-get install -y curl \
 		&& curl https://files.houseofpainserver.com/games/sof2/dependencies/libcxa.so.1 --output libcxa.so.1 \
 		&& cp libcxa.so.1 /usr/lib/libcxa.so.1 \
 		&& chmod 644 /usr/lib/libcxa.so.1 \
