@@ -3,7 +3,7 @@
 # Environment: SOF2
 # Minimum Panel Version: 0.6.0
 # ----------------------------------
-FROM		debian:10.4
+FROM		ubuntu:18.04
 LABEL		author="Noah Scharrenberg" maintainer="nscharrenberg@hotmail.com"
 
 ENV		DEBIAN_FRONTEND noninteractive
