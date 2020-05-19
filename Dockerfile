@@ -22,7 +22,15 @@ RUN		echo "# INSTALL DEPENDENCIES ##########################################" \
 		&& curl https://files.houseofpainserver.com/games/sof2/dependencies/fc4libs/ld-linux.so.2 --output ld-linux.so.2 \
 		&& mv ld-linux.so.2 /lib/ld-linux.so.2 \
 		&& echo "# CREATE USER ################################################" \
-		&& useradd -m -d /home/container container
+		&& useradd -m -d /home/container container \
+		&& echo "# INSTALL GAME ###############################################" \
+		&& mkdir /tmp/build \
+		&& cd /tmp/build \
+		&& curl https://files.houseofpainserver.com/games/sof2/linux/gold.tar.gz --output /tmp/build/gold.tar.gz \
+		&& tar -xvf /tmp/build/gold.tar.gz -C /home/container \
+		&& chmod 755 /home/container/sof2ded \
+		&& chmod 755 /home/container/1fx \
+		&& rm -rf /tmp/build/gold.tar.gz
 
 USER		container
 ENV		HOME /home/container
